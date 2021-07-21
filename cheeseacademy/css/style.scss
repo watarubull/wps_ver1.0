@@ -1,0 +1,633 @@
+@charset "utf-8";
+
+$black: #1a1a1a;
+$white: #FFF;
+$gray: #999;
+$gray02: #EFEFEF;
+$gray03: #AAAAAA;
+$gray04: #EEEEEE;
+$bg-gray: #FAFAFA;
+$bg-gray02: #707070;
+$yellow: #FFD61A;
+$colorMain: #278cfa;
+$colorA: #BF0049;
+$colorB: #019F7B;
+
+// max-width
+$breakpoint-down: (
+  'xs': 'screen and (max-width: 320px)',
+  'sm': 'screen and (max-width: 375px)',
+  'md': 'screen and (max-width: 768px)',
+  'lg': 'screen and (max-width: 960px)',
+  'xl': 'screen and (max-width: 1140px)',
+) !default;
+
+@mixin mq-down($bp: md) {
+  @media #{map-get($breakpoint-down, $bp)} {
+    @content;
+  }
+}
+@mixin flexBase($direction: row,$justify:space-between,$align:flex-start,$wrap:wrap) {
+  display: flex;
+  flex-direction: $direction;
+	justify-content: $justify;
+	align-items: $align;
+	flex-wrap: $wrap;
+}
+@mixin posiCenter($posiX:-50%,$posiY:-50%){
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate($posiX,$posiY);
+}
+@mixin baElement($content:"") {
+  content: $content;
+  display: block;
+}
+
+
+/* default
+--------------------------------------------------------*/
+
+body {
+  overflow-x: hidden;
+	width: 100%;
+	margin: 0;
+	padding: 0;
+	color: #333333;
+	font-size: 16px;
+	font-family:  "游ゴシック体", "Yu Gothic", YuGothic, Meiryo, "メイリオ", "ヒラギノ角ゴ Pro", "Hiragino Kaku Gothic Pro", "ＭＳ Ｐゴシック", "MS PGothic",  Osaka, sans-serif;
+	line-height: 1.6;
+  @include mq-down($bp:xl){
+    font-size: 15px;
+  }
+}
+*{
+  font-size: 1em;
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+header, footer, section, article, aside, nav,
+figure, figcaption, main {display: block;}
+ul,ol,dl,li,dt,dd{list-style: none;}
+img {
+	display: block;
+	max-width: 100%;
+	height: auto;
+	padding: 0;
+	margin: 0;
+	border:none;
+}
+a,a:visited{
+	color: #000;
+	text-decoration: none;
+	-webkit-transition:opacity .4s;
+	transition:opacity .4s;
+}
+:focus{outline:none;}
+.hover{-webkit-transition:opacity .4s;transition:opacity .4s;cursor: pointer;}
+a:hover,.hover:hover{opacity: 0.5;}
+
+/* 基本
+--------------------------------------------------------*/
+.flex{
+  @include flexBase;
+  &.half>*{
+    width: 50%;
+  }
+  &.align-stretch{
+    align-items: stretch;
+  }
+  &.align-item-c{
+    align-items: center;
+  }
+  &.single.center{
+    justify-content: center;
+  }
+  &.tri{
+    justify-content: flex-start;
+    @include mq-down($bp:md){
+      display: block;
+    }
+    &>*{
+      width: calc((100% - 24px * 2) / 3);
+      margin-right: 24px;
+      &:nth-child(3n){
+        margin-right: 0;
+        @include mq-down($bp:md){
+          margin-right: auto;
+        }
+      }
+      @include mq-down($bp:md){
+        width: 100%;
+        margin-right: auto;
+      }
+    }
+  }
+}
+.inner{
+  position: relative;
+	max-width: 1140px;
+	margin: 0 auto;
+  height: 100%;
+  @include mq-down($bp:xl){
+     width: 90%;
+  }
+}
+.sp{
+  display: none;
+  @include mq-down($bp:md){
+    display: block;
+  }
+}
+.pc{
+  @include mq-down($bp:md){
+    display: none;
+  }
+}
+.posi-center{
+  @include posiCenter;
+}
+.txt.txt-just{text-align: justify;}
+.txt-c{
+  text-align: center;
+  .txt + .txt{
+    margin-top: 1.5em;
+  }
+}
+.sec-title+.txt-c{
+  @include mq-down($bp:md){
+    text-align: justify;
+  }
+}
+.txt-l{
+  font-size: 48px;
+  @include mq-down($bp:md){
+    font-size: 24px;
+  }
+}
+.txt-m{
+  font-size: 32px;
+  @include mq-down($bp:md){
+    font-size: 16px;
+  }
+}
+.bold{font-weight: bold;}
+.bg-gray{background-color: $bg-gray;}
+.bg-gray02{background-color: $bg-gray02;}
+.btn{
+  &.center{
+    text-align: center;
+  }
+  &>*{
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 264px;
+    height: 60px;
+    padding: 0 1em;
+    font-weight: bold;
+  }
+  &.yellow>*{
+    color: $white;
+    background-color: $yellow;
+  }
+}
+*+.btn{margin-top: 40px;}
+.page-header{
+  .navBtn{display: none;}
+  @include mq-down($bp:md){
+    padding-top: 60px;
+    .navBtn{
+      display: block;
+      position: absolute;
+      top: 50%;
+      right: 5%;
+      width: 30px;
+      height: 24px;
+      cursor: pointer;
+      -webkit-transition:opacity .4s;
+      transition:opacity .4s;
+      -webkit-transform: translate(0,-50%);
+      transform: translate(0,-50%);
+    }
+    .navBtn:hover{opacity: 0.5;}
+    .navBtn .hambarg{
+      position: absolute;
+      left:50%;
+      -webkit-transform:translate(-50%,-50%);
+      transform:translate(-50%,-50%);
+      width: 100%;
+      height: 1px;
+      background-color: #000;
+      -webkit-transition:ease .2s;
+      transition:ease .2s;
+    }
+    .navBtn .hambarg:nth-child(1) {top:0%;}
+    .navBtn .hambarg:nth-child(2) {top:50%;}
+    .navBtn .hambarg:nth-child(3) {top:100%;}
+    .on .hambarg:nth-child(1),.on .hambarg:nth-child(2),.on .hambarg:nth-child(3){top: 50%;}
+    .on .hambarg:nth-child(1) {
+      -webkit-transform:translate(-50%,-50%) rotate(45deg);
+      transform:translate(-50%,-50%) rotate(45deg);
+    }
+    .on .hambarg:nth-child(2) {
+      -webkit-transform:translate(-50%,-50%);
+      transform:translate(-50%,-50%);
+      opacity:0;
+    }
+    .on .hambarg:nth-child(3) {
+      -webkit-transform:translate(-50%,-50%) rotate(-45deg);
+      transform:translate(-50%,-50%) rotate(-45deg);
+    }
+  }
+  .gnav{
+    width: 100%;
+    height: 70px;
+    background-color: $white;
+    @include mq-down($bp:md){
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 9999;
+      height: 60px;
+    }
+    &>.flex{
+      @include flexBase($align:center);
+    }
+    .page-title{
+      height: 60%;
+      img{
+        width: auto;
+        height: 100%;
+      }
+    }
+    .nav{
+      &>*{
+        font-size: 18px;
+        &+*{
+          margin-left: 1.78em;
+        }
+      }
+      @include mq-down($bp:md){
+        position: fixed;
+        top: 60px;
+        right: 0;
+        display: none;
+        width: 200px;
+        padding: 1em;
+        background-color: $white;
+        &>*{
+          &+*{
+            margin-left: 0;
+          }
+          a{
+            display: block;
+            padding: 0.5em 1em;
+          }
+        }
+      }
+    }
+  }
+  &.top{
+    padding-top: 70px;
+    .gnav{
+      position: fixed;
+      top: 0;
+      left: 0;
+    }
+    @include mq-down($bp:md){
+      padding-top: 60px;
+    }
+  }
+  &.bottom{
+    @include flexBase($direction: column-reverse);
+    .gnav{
+      border-bottom: solid 1px $gray02;
+    }
+    &.follow{
+      padding-bottom: 70px;
+      .gnav{
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 9999;
+      }
+      @include mq-down($bp:md){
+        padding-bottom: 0;
+      }
+    }
+    @include mq-down($bp:md){
+      display: block;
+      .gnav{
+        border-bottom: none;
+      }
+    }
+  }
+  @include mq-down($bp:md){
+      padding-top: 60px;
+    }
+  .key{
+    position: relative;
+    width: 100%;
+    padding-top: 36.6300366300366%;
+    background-image: url("../images/header/hero_img.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    .catch{
+      white-space: nowrap;
+      &>*{
+        display: block;
+        color: $white;
+        &+*{
+          margin-top: 0.5em;
+        }
+      }
+    }
+    @include mq-down($bp:md){
+      padding-top: 100%;
+      background-position: center left 28%;
+    }
+  }
+}
+.content{
+  padding: 80px 0;
+  &.after-img{
+    padding-bottom: 0;
+    .after-img-item{
+      @include baElement;
+      width: 100%;
+      margin-top: 80px;
+      @include mq-down($bp:md){
+        margin-top: 40px;
+      }
+    }
+  }
+  @include mq-down($bp:md){
+    padding: 40px 0;
+  }
+  @include mq-down($bp:md){
+    &.sp-pad-b-non{
+      padding-bottom: 0;
+    }
+  }
+  @include mq-down($bp:md){
+    &.sp-full>.inner{
+      width: 100%;
+    }
+  }
+}
+.sec-title{
+  margin-bottom: 2.5em;
+  text-align: center;
+  span{
+    display: block;
+    margin-bottom: 0.5em;
+    font-size: 27px;
+    font-weight: bold;
+  }
+  &.yellow span{color: $yellow;}
+}
+.heading{
+  margin-bottom: 1.8em;
+  font-size: 21px;
+  font-weight: bold;
+  @include mq-down($bp:md){
+    margin-bottom: 1em;
+    font-size: 16px;
+  }
+}
+.box-list{
+  &>*{
+    @include mq-down($bp:md){
+      display: block;
+      &.flex.half > *{
+        width: 100%;
+      }
+    }
+  }
+  .box{
+    background-color: $bg-gray;
+    @include mq-down($bp:md){
+      padding: 24px 0 40px;
+    }
+  }
+  .box-inner{
+    width: 100%;
+    max-width: calc(1140px / 2);
+    padding-left: 48px;
+    @include mq-down($bp:xl){
+      padding: 0 36px;
+    }
+    @include mq-down($bp:md){
+      padding: 0 5%;
+    }
+  }
+  &.Alternate{
+    &>*:nth-child(2n){
+      flex-direction: row-reverse;
+      .box{
+        justify-content: flex-end;
+      }
+      .box-inner{
+        padding-left: 0;
+        padding-right: 48px;
+        @include mq-down($bp:xl){
+          padding: 0 36px;
+        }
+        @include mq-down($bp:md){
+          padding: 0 5%;
+        }
+      }
+    }
+  }
+}
+*+.box-list{
+  margin-top: 60px;
+  @include mq-down($bp:md){
+    margin-top: 40px;
+  }
+}
+.card{
+  &.link a{
+    display: block;
+  }
+  .img{
+    position: relative;
+    padding-top: 66.7582417582418%;
+    img{
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+  .card-inner{
+    padding: 24px 16px 0;
+    @include mq-down($bp:md){
+      padding: 24px 5% 0;
+    }
+  }
+  .title{
+    margin-bottom: 16px;
+    font-weight: bold;
+  }
+  .date{
+    margin-top: 1em;
+    font-size: 14px;
+    color: $gray;
+  }
+  @include mq-down($bp:md){
+    &+*{margin-top: 20px;}
+  }
+}
+.map{
+  position: relative;
+  padding-top: 23.4432234432234%;
+  @include mq-down($bp:md){
+    padding-top: 85%;
+  }
+  iframe{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+  &+*{
+    margin-top: 60px;
+    @include mq-down($bp:md){
+      display: block;
+      margin-top: 40px;
+    }
+  }
+}
+.d-list{
+  &>*{
+    justify-content: flex-start;
+    &+*{margin-top: 1em;}
+  }
+  dt{
+    width: 6em;
+    margin-right: 1em;
+    font-weight: bold;
+    text-align: right;
+    @include mq-down($bp:md){
+      width: 100%;
+      margin-right: 0;
+      margin-bottom: 0.5em;
+      font-size: 16px;
+      text-align: left;
+    }
+  }
+  dd{
+    @include mq-down($bp:md){
+      &+dt{margin-top: 1em;}
+    }
+  }
+  &.form{
+    &>*{
+      &+*{
+        margin-top: 1.5em;
+        @include mq-down($bp:md){
+          margin-top: 40px;
+        }
+      }
+    }
+    dt{
+      width: 7em;
+      padding-top: 0.5em;
+      margin-right: 24px;
+      @include mq-down($bp:md){
+        width: 100%;
+        padding-top: 0;
+        margin-right: 0;
+        margin-bottom: 1em;
+      }
+    }
+    .radio dt{
+      padding-top: 0;
+    }
+    dd{
+      width: 440px;
+      padding-right: 50px;
+      @include mq-down($bp:md){
+        width: 100%;
+        padding-right: 0;
+        &+dt{margin-top: 1em;}
+      }
+    }
+  }
+}
+.form-wrap{
+  margin-top: 60px;
+  @include mq-down($bp:md){
+    margin-top: 40px;
+  }
+  input[type="text"],input[type="email"],textarea{
+    appearance: none;
+    display: block;
+    box-sizing: border-box;
+    width: 100%;
+    height: 40px;
+    padding: 0.5em;
+    border: solid 1px $gray03;
+  }
+  textarea{
+    height: 200px;
+  }
+  input[type="radio"]{
+    appearance: none;
+    display: block;
+    box-sizing: border-box;
+    width: 16px;
+    height: 16px;
+    margin-right: 16px;
+    background-color: #EEEEEE;
+    border-radius: 100%;
+  }
+  label{
+    display: inline-flex;
+    align-items: center;
+    font-size: 14px;
+    &:nth-child(n+2){
+      margin-top: 1em;
+      @include mq-down($bp:md){
+        margin-top: 0.8em;
+      }
+    }
+  }
+}
+.submit{
+  input[type="submit"]{
+    appearance: none;
+    display: block;
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 264px;
+    height: 60px;
+    margin: 0 auto;
+    border: none;
+    font-weight: bold;
+    color: $white;
+    background-color: $yellow;
+  }
+}
+*+.submit{margin-top: 40px;}
+
+.page-footer{
+  padding: 2em;
+  &.bg-gray02{
+    color: $white;
+  }
+  @include mq-down($bp:md){
+    margin-top: 40px;
+  }
+}
+.copy{
+  font-size: 14px;
+}
