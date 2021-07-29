@@ -11,21 +11,24 @@
 <body>
     <header class="page-header">
         <div class="inner flex">
-            <h1 class="page-title">Watch Potch Station</h1>
+            <h1 class="page-title">Wattch Potch Station</h1>
+            <p class="btn"><a href="./data/wps_template.zip" download="wps_template.zip">データDL</a></p>
         </div>
     </header>
     <main>
         <div class="main-area inner flex">
             <div class="code-area">
                 <h2 class="heading">CODE</h2>
-                <textarea class="code-box" name="code" id="code"></textarea>
+                <div class="code-wrap"><code class="code-box" id="code"></code></div>
+                <button class="copy">コピー</button>
+                <p class="copy-alert"><span>コピったよ！</span></p>
             </div>
             <div class="layout-area">
                 <h2 class="heading">LAYOUT</h2>
                 <div class="head-layout layout">
                     <h3 class="section-title">header</h3>
                     <div class="select-content">
-                        <p class="now-item">headerA</p>
+                        <p class="now-item active">headerA</p>
                     </div>
                 </div>
                 <div class="main-layout layout">
@@ -44,13 +47,19 @@
             </div>
             <div class="select-area">
                 <h2 class="heading">SELECT</h2>
-                <div class="head-select">
+                <div class="head-select select-box active">
+
+                </div>
+                <div class="main-select select-box">
+
+                </div>
+                <div class="foot-select select-box">
 
                 </div>
             </div>
         </div>
     </main>
-    
+
 <!--/js-->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
 <script type="text/javascript"  src="./js/wps_1.0.js"></script>

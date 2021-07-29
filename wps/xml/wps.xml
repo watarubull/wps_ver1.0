@@ -1,12 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
 
+<items>
 <head>
   <comps>
     <title>ヘッダー1</title>
-    <html>"./comps/header01.html"</html>
+    <html>./comps/header01.html</html>
+    <img>./img/thumb_header01.png</img>
   </comps>
   <comps>
     <title>ヘッダー2</title>
-    <html>"./comps/header01.html"</html>
+    <html>./comps/header02.html</html>
+    <img>./img/thumb_header02.png</img>
   </comps>
 </head>
+
+<main-content>
+  <comps>
+    <title>メイン1</title>
+    <html>./comps/main01.html</html>
+    <img>./img/thumb_main01.png</img>
+  </comps>
+  <comps>
+    <title>メイン2</title>
+    <html>./comps/main02.html</html>
+    <img>./img/thumb_main02.png</img>
+  </comps>
+  <comps>
+    <title>メイン3</title>
+    <html>./comps/main03.html</html>
+    <img>./img/thumb_main03.png</img>
+  </comps>
+  <comps>
+    <title>メイン4</title>
+    <html>./comps/main04.html</html>
+    <img>./img/thumb_main04.png</img>
+  </comps>
+  <comps>
+    <title>メイン5</title>
+    <html>./comps/main05.html</html>
+    <img>./img/thumb_main05.png</img>
+  </comps>
+</main-content>
+
+<foot>
+  <comps>
+    <title>フッター1</title>
+    <html>./comps/footer01.html</html>
+    <img>./img/thumb_footer01.png</img>
+  </comps>
+
+</foot>
+
+</items>

@@ -188,6 +188,16 @@ main {
           align-items: center;
 }
 
+.page-header .btn a {
+  display: inline-block;
+  padding: 0.4em 0.8em;
+  font-size: 16px;
+  font-weight: bold;
+  color: #1a1a1a;
+  background-color: #FFD61A;
+  border-radius: 10px;
+}
+
 .main-area .heading {
   margin-bottom: 24px;
   border-bottom: solid 2px #1a1a1a;
@@ -201,15 +211,60 @@ main {
   width: calc((100% - 36px * 2) / 5 * 1);
 }
 
+.main-area .code-area .code-wrap {
+  overflow-y: scroll;
+  display: block;
+  width: 100%;
+  height: 500px;
+  font-size: 12px;
+  border: solid 1px #AAAAAA;
+}
+
 .main-area .code-area .code-box {
+  display: block;
+  padding: 1em;
+}
+
+.main-area .code-area .copy {
   -webkit-appearance: none;
      -moz-appearance: none;
           appearance: none;
   display: block;
   width: 100%;
-  height: 500px;
-  padding: 1em;
-  border: solid 1px #AAAAAA;
+  height: 45px;
+  margin-top: 24px;
+  font-weight: bold;
+  color: #1a1a1a;
+  background-color: #FFD61A;
+  border: none;
+  cursor: pointer;
+}
+
+.main-area .code-area .copy-alert {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  display: none;
+  width: 200px;
+  height: 45px;
+  color: #FFF;
+  background-color: #1a1a1a;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+}
+
+.main-area .code-area .copy-alert span {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 200px;
+  height: 45px;
 }
 
 .main-area .layout-area .layout {
@@ -238,6 +293,10 @@ main {
   margin-top: 0.5em;
 }
 
+.main-area .layout-area .layout .now-item.active {
+  border-color: #FFD61A;
+}
+
 .main-area .layout-area .layout .add {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -246,5 +305,33 @@ main {
       -ms-flex-pack: center;
           justify-content: center;
   border-radius: 20px;
+}
+
+.main-area .select-area .select-box {
+  display: none;
+}
+
+.main-area .select-area .select-box.active {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+.main-area .select-area .select-box label {
+  display: block;
+  width: calc((100% - 15px * 2) / 3);
+  padding: 10px;
+  margin-right: 15px;
+  border: solid 1px #AAAAAA;
+}
+
+.main-area .select-area .select-box label:nth-of-type(3n) {
+  margin-right: 0;
+}
+
+.main-area .select-area .select-box label:nth-child(n+4) {
+  margin-top: 15px;
 }
 /*# sourceMappingURL=style.css.map */
